@@ -64,6 +64,7 @@ public class ScrollingActivity extends AppCompatActivity {
     pastaListViewModel = new ViewModelProvider(this).get(PastaListViewModel.class);
     pastaListViewModel.getPastaList().observe(this, pastaListAdapter::submitList);
 
+
     binding = ActivityScrollingBinding.inflate(getLayoutInflater());
     //setContentView(binding.getRoot());
     Toolbar toolbar = binding.toolbar;
@@ -82,92 +83,8 @@ public class ScrollingActivity extends AppCompatActivity {
               }
             });
 
-
-
-
-
   }
 
-  /*private void fetchPastas(ArrayList<Pasta> pastaFetchedList) {
-    progressBar.setVisibility(View.VISIBLE);
-    Call<PastaApiResponseDTO> pastaListApiCall =
-        PastaApi.getApiInstance().getService().fetchAllPastas();
-    pastaListApiCall.enqueue(
-        new retrofit2.Callback<PastaApiResponseDTO>() {
-          @Override
-          public void onResponse(
-              Call<PastaApiResponseDTO> call, Response<PastaApiResponseDTO> response) {
-            if (!response.isSuccessful()) {
-              Log.d("Status code", "Code: " + response.code());
-              return;
-            }
-            if (response.body() != null) {
-              PastaApiResponseDTO responseBody = response.body();
-              List<Pasta> fetchedPastaList = responseBody.getMeals();
-              //fetchedPastaList = getDetailsOfPastasWithExtraApiCall(fetchedPastaList);
-              pastaFetchedList.addAll(fetchedPastaList);
-              pastaList.addAll(fetchedPastaList);
-              pastaAppRepository.insertPastas(pastaList);
-              pastaListAdapter.notifyDataSetChanged();
-              progressBar.setVisibility(View.GONE);
-              Log.d("FetchedMainPastas", fetchedPastaList.toString());
-            }
-          }
-
-          @Override
-          public void onFailure(Call<PastaApiResponseDTO> call, Throwable t) {
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(ScrollingActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT)
-                .show();
-            Log.d("ApiException", t.getMessage());
-            call.cancel();
-          }
-        });
-  }
-
-  private ArrayList<Pasta> getDetailsOfPastasWithExtraApiCall(List<Pasta> fetchedPastaList) {
-    ArrayList<Pasta> pastaWithDetailsList = new ArrayList<>();
-    if (fetchedPastaList != null) {
-      for (Pasta pasta : fetchedPastaList) {
-        Call<PastaApiResponseDTO> pastaDetailsApiCall =
-                PastaApi.getApiInstance().getService().fetchPastaDetailsById(pasta.getIdMeal());
-        pastaDetailsApiCall.enqueue(
-            new retrofit2.Callback<PastaApiResponseDTO>() {
-              @Override
-              public void onResponse(
-                  Call<PastaApiResponseDTO> call, Response<PastaApiResponseDTO> response) {
-                if (!response.isSuccessful()) {
-                  Log.d("Status code", "Code: " + response.code());
-                  return;
-                }
-                if (response.body() != null) {
-                  PastaApiResponseDTO responseBody = response.body();
-                  Pasta pastaWithDetails = responseBody.getMeals().get(0);
-                  Log.d("PastaDetailsResponse", pastaWithDetails.toString());
-
-                  if (pastaWithDetails != null) {
-                    pastaWithDetails.setBasePrice(
-                            generateRandomBigDecimalFromInRange(new BigDecimal(6), new BigDecimal(12))
-                                    .doubleValue());
-                    pastaWithDetails.setFavourite(false);
-                    pastaWithDetailsList.add(pastaWithDetails);
-                    pastaAppRepository.update(pastaWithDetails);
-                    pastaListAdapter.notifyDataSetChanged();
-
-                  }
-                }
-              }
-
-              @Override
-              public void onFailure(Call<PastaApiResponseDTO> call, Throwable t) {
-                Log.d("ApiException", t.getMessage());
-                call.cancel();
-              }
-            });
-      }
-    }
-    return pastaWithDetailsList;
-  }*/
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

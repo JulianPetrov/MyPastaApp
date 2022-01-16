@@ -41,17 +41,18 @@
   </LinearLayout>
 
   <Button
-      android:id="@+id/button3"
+      android:id="@+id/add_to_cart_button"
       android:layout_width="67dp"
       android:layout_height="105dp"
       android:layout_weight="1"
       android:text="@string/add_to_cart" />
 
   <ImageButton
-      android:id="@+id/imageButton"
+      android:id="@+id/add_to_favourites_button"
       android:layout_width="wrap_content"
       android:layout_height="105dp"
       android:layout_weight="0"
-      app:srcCompat="@android:drawable/ic_menu_add" />
+      app:srcCompat="@android:drawable/ic_menu_add"
+      tools:ignore="SpeakableTextPresentCheck" />
 
 </LinearLayout>

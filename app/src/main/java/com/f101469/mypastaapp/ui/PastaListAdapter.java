@@ -1,10 +1,14 @@
 package com.f101469.mypastaapp.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +18,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.f101469.mypastaapp.OrderActivity;
 import com.f101469.mypastaapp.R;
+import com.f101469.mypastaapp.ScrollingActivity;
 import com.f101469.mypastaapp.model.Pasta;
 
 import java.io.InputStream;
@@ -30,17 +36,23 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
     TextView pastaIngredientsTextView;
     TextView pastaPriceTextView;
     ImageView pastaImageView;
+    Button addToCartButton;
+    ImageButton addToFavouritesButton;
+    Context context;
 
     public PastaListViewHolder(@NonNull View itemView) {
       super(itemView);
+      context = itemView.getContext();
       pastaNameTextView = itemView.findViewById(R.id.pasta_name_text_view);
       pastaPriceTextView = itemView.findViewById(R.id.pasta_price_text_view);
       pastaIngredientsTextView = itemView.findViewById(R.id.pasta_ingredients_text_view);
       pastaImageView = itemView.findViewById(R.id.pasta_image_view);
+      addToCartButton = itemView.findViewById(R.id.add_to_cart_button);
+      addToFavouritesButton = itemView.findViewById(R.id.add_to_favourites_button);
     }
 
     public void bind(
-        String pastaName, String pastaPrice, String pastaIngredients, String pastaImage) {
+        String pastaName, String pastaPrice, String pastaIngredients, String pastaImage, Context context, int position) {
       pastaNameTextView.setText(pastaName);
       pastaPriceTextView.setText(pastaPrice);
       pastaIngredientsTextView.setText(pastaIngredients);
@@ -55,6 +67,13 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
                 }
               });
       thread.start();
+
+      addToCartButton.setOnClickListener(view -> {
+        Intent intent = new Intent(context, OrderActivity.class);
+        intent.putExtra("pastaName", String.valueOf(pastaName));
+        intent.putExtra("price", String.valueOf(pastaPrice));
+        context.startActivity(intent);
+      });
     }
 
     static PastaListViewHolder create(ViewGroup parent) {
@@ -87,7 +106,7 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
             current.getStrIngredient3(),
             current.getStrIngredient4());
     String pastaImage = current.getStrMealThumb();
-    holder.bind(current.getStrMeal(), pastaPrice, pastaIngredients, pastaImage);
+    holder.bind(current.getStrMeal(), pastaPrice, pastaIngredients, pastaImage, holder.context, position);
   }
 
   public static class PastaDiff extends DiffUtil.ItemCallback<Pasta> {
