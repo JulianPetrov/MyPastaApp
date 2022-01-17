@@ -20,6 +20,9 @@ public interface PastaAppDao {
   @Query("SELECT * FROM pastas WHERE idMeal = :id")
   Pasta getPastaById(long id);
 
+  @Query("SELECT * FROM pastas WHERE name = :pastaName")
+  Pasta getPastaByName(String pastaName);
+
   @Insert
   void insertPasta(Pasta pasta);
 

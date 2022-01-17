@@ -25,6 +25,10 @@ public class PastaAppRepository {
     return allPastas;
   }
 
+  public Pasta getPastaByName(String pastaName){
+      return pastaAppDao.getPastaByName(pastaName);
+  }
+
   public void insert(Pasta pasta) {
     PastaAppDB.DB_WRITE_EXECUTOR.execute(
         () -> {

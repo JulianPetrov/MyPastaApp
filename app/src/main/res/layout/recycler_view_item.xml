@@ -52,7 +52,7 @@
       android:layout_width="wrap_content"
       android:layout_height="105dp"
       android:layout_weight="0"
-      app:srcCompat="@android:drawable/ic_menu_add"
+      app:srcCompat="@drawable/favourites_border"
       tools:ignore="SpeakableTextPresentCheck" />
 
 </LinearLayout>

@@ -2,6 +2,8 @@ package com.f101469.mypastaapp;
 
 import static com.f101469.mypastaapp.ui.PastaListAdapter.generateRandomBigDecimalFromInRange;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.f101469.mypastaapp.api.PastaApi;
@@ -26,6 +28,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -45,16 +49,20 @@ public class ScrollingActivity extends AppCompatActivity {
   private ActivityScrollingBinding binding;
   private ProgressBar progressBar;
   private PastaListViewModel pastaListViewModel;
+  private ImageButton addToFavouritesButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
    // deleteDatabaseFile("pasta_app_db");
 
-    setContentView(R.layout.activity_scrolling);
-    progressBar = findViewById(R.id.progress_bar);
-
     setContentView(R.layout.content_scrolling);
+    setContentView(R.layout.activity_scrolling);
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
+    toolBarLayout.setTitle(getTitle());
+
 
     RecyclerView pastaListRecyclerView = findViewById(R.id.pasta_list);
     PastaListAdapter pastaListAdapter = new PastaListAdapter(new PastaListAdapter.PastaDiff());
@@ -63,25 +71,6 @@ public class ScrollingActivity extends AppCompatActivity {
 
     pastaListViewModel = new ViewModelProvider(this).get(PastaListViewModel.class);
     pastaListViewModel.getPastaList().observe(this, pastaListAdapter::submitList);
-
-
-    binding = ActivityScrollingBinding.inflate(getLayoutInflater());
-    //setContentView(binding.getRoot());
-    Toolbar toolbar = binding.toolbar;
-    setSupportActionBar(toolbar);
-    CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-    toolBarLayout.setTitle(getTitle());
-
-    FloatingActionButton fab = binding.fab;
-    fab.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .show();
-              }
-            });
 
   }
 
@@ -101,9 +90,9 @@ public class ScrollingActivity extends AppCompatActivity {
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
+    /*if (id == R.id.action_settings) {
       return true;
-    }
+    }*/
     return super.onOptionsItemSelected(item);
   }
 
@@ -114,5 +103,6 @@ public class ScrollingActivity extends AppCompatActivity {
     if (db.delete()) Log.d("DBProgress", "Database deleted successfully");
     else Log.d("DBProgress", "Failed to delete database.");
   }
+
 
 }

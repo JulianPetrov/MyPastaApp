@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +23,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.f101469.mypastaapp.OrderActivity;
 import com.f101469.mypastaapp.R;
 import com.f101469.mypastaapp.ScrollingActivity;
+import com.f101469.mypastaapp.database.PastaAppDB;
+import com.f101469.mypastaapp.database.PastaAppDao;
 import com.f101469.mypastaapp.model.Pasta;
+import com.f101469.mypastaapp.repository.PastaAppRepository;
 
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -39,10 +44,12 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
     Button addToCartButton;
     ImageButton addToFavouritesButton;
     Context context;
+    PastaAppDB pastaAppDb;
 
     public PastaListViewHolder(@NonNull View itemView) {
       super(itemView);
       context = itemView.getContext();
+      pastaAppDb = PastaAppDB.getDatabase(context);
       pastaNameTextView = itemView.findViewById(R.id.pasta_name_text_view);
       pastaPriceTextView = itemView.findViewById(R.id.pasta_price_text_view);
       pastaIngredientsTextView = itemView.findViewById(R.id.pasta_ingredients_text_view);
@@ -52,10 +59,21 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
     }
 
     public void bind(
-        String pastaName, String pastaPrice, String pastaIngredients, String pastaImage, Context context, int position) {
+        String pastaName,
+        String pastaPrice,
+        String pastaIngredients,
+        String pastaImage,
+        boolean isFavourite,
+        Context context,
+        int position) {
       pastaNameTextView.setText(pastaName);
       pastaPriceTextView.setText(pastaPrice);
       pastaIngredientsTextView.setText(pastaIngredients);
+      if (isFavourite) {
+        addToFavouritesButton.setImageResource(R.drawable.favourites_selected);
+      } else {
+        addToFavouritesButton.setImageResource(R.drawable.favourites_border);
+      }
       Thread thread =
           new Thread(
               () -> {
@@ -68,12 +86,37 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
               });
       thread.start();
 
-      addToCartButton.setOnClickListener(view -> {
-        Intent intent = new Intent(context, OrderActivity.class);
-        intent.putExtra("pastaName", String.valueOf(pastaName));
-        intent.putExtra("price", String.valueOf(pastaPrice));
-        context.startActivity(intent);
-      });
+      addToCartButton.setOnClickListener(
+          view -> {
+            Intent intent = new Intent(context, OrderActivity.class);
+            intent.putExtra("pastaName", String.valueOf(pastaName));
+            intent.putExtra("price", String.valueOf(pastaPrice));
+            context.startActivity(intent);
+          });
+
+      addToFavouritesButton.setOnClickListener(
+          view -> {
+            Thread addToFavouritesThread =
+                new Thread(
+                    () -> {
+                      try {
+                        Pasta pasta = pastaAppDb.pastaAppDao().getPastaByName(pastaName);
+                        if (pasta != null) {
+                          if (!pasta.getFavourite()) {
+                            pasta.setFavourite(true);
+                            addToFavouritesButton.setImageResource(R.drawable.favourites_selected);
+                          } else {
+                            pasta.setFavourite(false);
+                            addToFavouritesButton.setImageResource(R.drawable.favourites_border);
+                          }
+                          pastaAppDb.pastaAppDao().updatePasta(pasta);
+                        }
+                      } catch (Exception e) {
+                        Log.d("AddToFavourites", "Adding to favourites failed.");
+                      }
+                    });
+            addToFavouritesThread.start();
+          });
     }
 
     static PastaListViewHolder create(ViewGroup parent) {
@@ -106,7 +149,8 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
             current.getStrIngredient3(),
             current.getStrIngredient4());
     String pastaImage = current.getStrMealThumb();
-    holder.bind(current.getStrMeal(), pastaPrice, pastaIngredients, pastaImage, holder.context, position);
+    holder.bind(
+        current.getStrMeal(), pastaPrice, pastaIngredients, pastaImage, current.getFavourite(),holder.context, position);
   }
 
   public static class PastaDiff extends DiffUtil.ItemCallback<Pasta> {
