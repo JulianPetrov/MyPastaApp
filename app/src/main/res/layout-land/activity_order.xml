@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderActivity">
+
+    <TextView
+        android:id="@+id/order_time_text_view"
+        android:layout_width="128dp"
+        android:layout_height="42dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/order_now_button"
+        app:layout_constraintStart_toEndOf="@+id/price_text_view"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/quantity_text_view"
+        android:layout_width="94dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/quantity"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/extra_meat_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker_button" />
+
+    <Spinner
+        android:id="@+id/quantity_spinner"
+        android:layout_width="232dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="2dp"
+        android:entries="@array/quantities"
+        app:layout_constraintStart_toEndOf="@+id/quantity_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/date_picker_button" />
+
+    <CheckBox
+        android:id="@+id/extra_cheese_checkBox"
+        android:layout_width="252dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/extra_cheese_2_bgn"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pasta_name_view" />
+
+    <CheckBox
+        android:id="@+id/extra_veggies_checkbox"
+        android:layout_width="255dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/extra_veggies_1_bgn"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/extra_meat_checkbox" />
+
+    <CheckBox
+        android:id="@+id/extra_meat_checkbox"
+        android:layout_width="254dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/extra_meat_2_50_bgn"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/extra_cheese_checkBox" />
+
+    <Spinner
+        android:id="@+id/city_spinner"
+        android:layout_width="232dp"
+        android:layout_height="48dp"
+        android:entries="@array/cities"
+        app:layout_constraintStart_toEndOf="@+id/city_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/quantity_spinner" />
+
+    <TextView
+        android:id="@+id/city_text_view"
+        android:layout_width="94dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="35dp"
+        android:text="@string/choose_city"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/extra_veggies_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/quantity_text_view" />
+
+    <Button
+        android:id="@+id/time_picker_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="2dp"
+        android:onClick="showTimePickerDialog"
+        android:text="@string/pick_time"
+        app:layout_constraintStart_toEndOf="@+id/extra_cheese_checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/pasta_name_view" />
+
+    <Button
+        android:id="@+id/date_picker_button"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:onClick="showDatePickerDialog"
+        android:text="@string/pick_date"
+        app:layout_constraintStart_toEndOf="@+id/time_picker_button"
+        app:layout_constraintTop_toBottomOf="@+id/pasta_name_view" />
+
+    <TextView
+        android:id="@+id/pasta_name_view"
+        android:layout_width="485dp"
+        android:layout_height="44dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart_text_view" />
+
+    <TextView
+        android:id="@+id/cart_text_view"
+        android:layout_width="493dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/your_order"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/price_text_view"
+        android:layout_width="364dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="20dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#673AB7"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/order_now_button"
+        app:layout_constraintEnd_toStartOf="@+id/order_time_text_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/order_date_text_view"
+        android:layout_width="128dp"
+        android:layout_height="42dp"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/order_now_button"
+        app:layout_constraintStart_toEndOf="@+id/order_time_text_view" />
+
+    <Button
+        android:id="@+id/order_now_button"
+        android:layout_width="629dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/order_now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="533dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-10dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

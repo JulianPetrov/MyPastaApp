@@ -9,13 +9,13 @@
 
   <ImageView
       android:id="@+id/pasta_image_view"
-      android:layout_width="71dp"
-      android:layout_height="104dp"
+      android:layout_width="83dp"
+      android:layout_height="114dp"
       tools:src="@tools:sample/avatars" />
 
   <LinearLayout
-      android:layout_width="175dp"
-      android:layout_height="wrap_content"
+      android:layout_width="173dp"
+      android:layout_height="122dp"
       android:layout_gravity="center"
       android:orientation="vertical"
       android:padding="5dp">
@@ -24,26 +24,32 @@
         android:id="@+id/pasta_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
         tools:text="@tools:sample/lorem[3]" />
 
     <TextView
         android:id="@+id/pasta_ingredients_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="italic"
         tools:text="@tools:sample/lorem[4]" />
 
     <TextView
         android:id="@+id/pasta_price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#673AB7"
+        android:textSize="16sp"
+        android:textStyle="bold"
         tools:text="@tools:sample/lorem[2]" />
 
   </LinearLayout>
 
   <Button
       android:id="@+id/add_to_cart_button"
-      android:layout_width="67dp"
-      android:layout_height="105dp"
+      android:layout_width="88dp"
+      android:layout_height="106dp"
       android:layout_weight="1"
       android:text="@string/add_to_cart" />
 

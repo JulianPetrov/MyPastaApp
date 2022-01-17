@@ -1,5 +1,6 @@
 package com.f101469.mypastaapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -43,6 +44,10 @@ public class OrderActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_order);
+
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar != null) supportActionBar.setDisplayHomeAsUpEnabled(true);
+
     cartTextView = findViewById(R.id.cart_text_view);
     pastaNameTextView = findViewById(R.id.pasta_name_view);
     extraCheeseCheckbox = findViewById(R.id.extra_cheese_checkBox);

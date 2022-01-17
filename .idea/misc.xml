@@ -11,8 +11,11 @@
         <entry key="..\:/NBU/MobileDevelopment/MyPastaApp/app/src/main/res/menu/menu_scrolling.xml" value="0.20052083333333334" />
         <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/drawable-anydpi/favourites.xml" value="0.32760416666666664" />
         <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/drawable-anydpi/favourites_border.xml" value="0.3828125" />
+        <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/drawable-anydpi/favourites_selected.xml" value="0.16354166666666667" />
+        <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/drawable-anydpi/refresh.xml" value="0.16354166666666667" />
         <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.1318607764390897" />
         <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/layout-w936dp/content_scrolling.xml" value="0.208203125" />
+        <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/layout/activity_favourites.xml" value="0.1539855072463768" />
         <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/layout/activity_order.xml" value="0.22" />
         <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/layout/activity_scrolling.xml" value="0.31145833333333334" />
         <entry key="..\:/NBU/MobileDevelopment/MyPastaAppRepo/MyPastaApp/app/src/main/res/layout/content_scrolling.xml" value="0.36666666666666664" />

@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -54,7 +55,9 @@ public class ScrollingActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-   // deleteDatabaseFile("pasta_app_db");
+    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+    // deleteDatabaseFile("pasta_app_db");
 
     setContentView(R.layout.content_scrolling);
     setContentView(R.layout.activity_scrolling);
@@ -72,6 +75,15 @@ public class ScrollingActivity extends AppCompatActivity {
     pastaListViewModel = new ViewModelProvider(this).get(PastaListViewModel.class);
     pastaListViewModel.getPastaList().observe(this, pastaListAdapter::submitList);
 
+    FloatingActionButton fab = findViewById(R.id.fab);
+    fab.setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), FavouritesActivity.class);
+                startActivity(intent);
+              }
+            });
   }
 
 

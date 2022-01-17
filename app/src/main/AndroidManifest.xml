@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPastaApp">
         <activity
+            android:name=".FavouritesActivity"
+            android:parentActivityName=".ScrollingActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrderActivity"
+            android:parentActivityName=".ScrollingActivity"
             android:exported="false" />
         <activity
             android:name=".ScrollingActivity"
