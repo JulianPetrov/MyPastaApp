@@ -51,7 +51,8 @@
       android:layout_width="88dp"
       android:layout_height="106dp"
       android:layout_weight="1"
-      android:text="@string/add_to_cart" />
+      android:text="@string/add_to_cart"
+      app:cornerRadius="15dp" />
 
   <ImageButton
       android:id="@+id/add_to_favourites_button"

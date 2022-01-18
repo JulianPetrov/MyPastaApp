@@ -40,4 +40,7 @@ public interface PastaAppDao {
 
   @Query("DELETE FROM pastas")
   void deleteAllPastas();
+
+  @Query("SELECT * FROM pastas WHERE is_favourite=1")
+  LiveData<List<Pasta>> getAllFavouritePastas();
 }

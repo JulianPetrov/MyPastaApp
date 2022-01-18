@@ -63,4 +63,8 @@ public class PastaAppRepository {
           pastaAppDao.deletePasta(pasta);
         });
   }
+
+    public LiveData<List<Pasta>> getAllFavouritedPastas() {
+      return pastaAppDao.getAllFavouritePastas();
+    }
 }
