@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="add_to_cart">Add to cart</string>
+    <string name="order_now_message">Order now?</string>
 </resources>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.f101469.mypastaapp.ui.fragment.DatePickerFragment;
+import com.f101469.mypastaapp.ui.fragment.OrderNowDialogFragment;
 import com.f101469.mypastaapp.ui.fragment.TimePickerFragment;
 
 import java.util.Locale;
@@ -87,6 +88,10 @@ public class OrderActivity extends AppCompatActivity {
 
     datePickerButton.setOnClickListener(this::showDatePickerDialog);
     timePickerButton.setOnClickListener(this::showTimePickerDialog);
+
+    orderNowButton.setOnClickListener(view -> {
+      new OrderNowDialogFragment().show(getSupportFragmentManager(), "orderNow");
+    });
   }
 
   void getAndSetIntentData() {
