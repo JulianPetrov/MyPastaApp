@@ -17,8 +17,6 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class FavouritesActivity extends AppCompatActivity {
 
-  private PastaListViewModel pastaFavouritesViewModel;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -34,18 +32,16 @@ public class FavouritesActivity extends AppCompatActivity {
     pastaListRecyclerView.setAdapter(pastaListAdapter);
     pastaListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-    pastaFavouritesViewModel = new ViewModelProvider(this).get(PastaListViewModel.class);
+    PastaListViewModel pastaFavouritesViewModel = new ViewModelProvider(this).get(PastaListViewModel.class);
     pastaFavouritesViewModel.getPastaFavouritesList().observe(this, pastaListAdapter::submitList);
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        NavUtils.navigateUpFromSameTask(this);
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
+    if (item.getItemId() == android.R.id.home) {
+      NavUtils.navigateUpFromSameTask(this);
+      return true;
     }
+    return super.onOptionsItemSelected(item);
   }
 }

@@ -22,24 +22,12 @@ import java.util.Locale;
 
 public class OrderActivity extends AppCompatActivity {
 
-  private Double basePrice;
   private int currentQuantity = 1;
 
-  private TextView cartTextView;
   private TextView pastaNameTextView;
-  private CheckBox extraCheeseCheckbox;
-  private CheckBox extraMeatCheckbox;
-  private CheckBox extraVeggiesCheckBox;
-  private TextView quantityTextView;
-  private Spinner quantitySpinner;
-  private TextView cityTextView;
-  private Spinner citySpinner;
-  private Button datePickerButton;
-  private Button timePickerButton;
   private TextView priceTextView;
   private TextView orderDateTextView;
   private TextView orderTimeTextView;
-  private Button orderNowButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -49,23 +37,17 @@ public class OrderActivity extends AppCompatActivity {
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar != null) supportActionBar.setDisplayHomeAsUpEnabled(true);
 
-    cartTextView = findViewById(R.id.cart_text_view);
+    Spinner quantitySpinner = findViewById(R.id.quantity_spinner);
+    Button datePickerButton = findViewById(R.id.date_picker_button);
+    Button timePickerButton = findViewById(R.id.time_picker_button);
+    Button orderNowButton = findViewById(R.id.order_now_button);
+
     pastaNameTextView = findViewById(R.id.pasta_name_view);
-    extraCheeseCheckbox = findViewById(R.id.extra_cheese_checkBox);
-    extraMeatCheckbox = findViewById(R.id.extra_meat_checkbox);
-    extraVeggiesCheckBox = findViewById(R.id.extra_veggies_checkbox);
-    quantityTextView = findViewById(R.id.quantity_text_view);
-    quantitySpinner = findViewById(R.id.quantity_spinner);
-    cityTextView = findViewById(R.id.city_text_view);
-    citySpinner = findViewById(R.id.city_spinner);
-    datePickerButton = findViewById(R.id.date_picker_button);
-    timePickerButton = findViewById(R.id.time_picker_button);
     priceTextView = findViewById(R.id.price_text_view);
     orderDateTextView = findViewById(R.id.order_date_text_view);
     orderTimeTextView = findViewById(R.id.order_time_text_view);
-    orderNowButton = findViewById(R.id.order_now_button);
+
     getAndSetIntentData();
-    basePrice = parsePrice();
 
     quantitySpinner.setOnItemSelectedListener(
         new AdapterView.OnItemSelectedListener() {
@@ -89,9 +71,10 @@ public class OrderActivity extends AppCompatActivity {
     datePickerButton.setOnClickListener(this::showDatePickerDialog);
     timePickerButton.setOnClickListener(this::showTimePickerDialog);
 
-    orderNowButton.setOnClickListener(view -> {
-      new OrderNowDialogFragment().show(getSupportFragmentManager(), "orderNow");
-    });
+    orderNowButton.setOnClickListener(
+        view -> {
+          new OrderNowDialogFragment().show(getSupportFragmentManager(), "orderNow");
+        });
   }
 
   void getAndSetIntentData() {

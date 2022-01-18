@@ -17,9 +17,6 @@ import java.util.Locale;
 public class TimePickerFragment extends DialogFragment
     implements TimePickerDialog.OnTimeSetListener {
 
-  private Integer selectedHour;
-  private Integer selectedMinute;
-
   @NonNull
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {

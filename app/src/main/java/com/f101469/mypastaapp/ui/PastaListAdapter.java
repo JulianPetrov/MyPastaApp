@@ -64,8 +64,7 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
         String pastaIngredients,
         String pastaImage,
         boolean isFavourite,
-        Context context,
-        int position) {
+        Context context) {
       pastaNameTextView.setText(pastaName);
       pastaPriceTextView.setText(pastaPrice);
       pastaIngredientsTextView.setText(pastaIngredients);
@@ -150,7 +149,12 @@ public class PastaListAdapter extends ListAdapter<Pasta, PastaListAdapter.PastaL
             current.getStrIngredient4());
     String pastaImage = current.getStrMealThumb();
     holder.bind(
-        current.getStrMeal(), pastaPrice, pastaIngredients, pastaImage, current.getFavourite(),holder.context, position);
+        current.getStrMeal(),
+        pastaPrice,
+        pastaIngredients,
+        pastaImage,
+        current.getFavourite(),
+        holder.context);
   }
 
   public static class PastaDiff extends DiffUtil.ItemCallback<Pasta> {

@@ -1,29 +1,18 @@
 package com.f101469.mypastaapp.database;
 
-import static com.f101469.mypastaapp.ui.PastaListAdapter.generateRandomBigDecimalFromInRange;
 
-import android.app.Application;
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.room.Database;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
-import com.f101469.mypastaapp.ScrollingActivity;
 import com.f101469.mypastaapp.api.PastaApi;
 import com.f101469.mypastaapp.model.Pasta;
 import com.f101469.mypastaapp.model.PastaApiResponseDTO;
-import com.f101469.mypastaapp.repository.PastaAppRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
