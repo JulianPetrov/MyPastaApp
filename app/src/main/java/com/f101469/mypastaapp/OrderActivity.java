@@ -73,7 +73,13 @@ public class OrderActivity extends AppCompatActivity {
 
     orderNowButton.setOnClickListener(
         view -> {
-          new OrderNowDialogFragment().show(getSupportFragmentManager(), "orderNow");
+          Bundle bundle = new Bundle();
+          bundle.putString("pastaName", pastaNameTextView.getText().toString());
+          bundle.putString("price", priceTextView.getText().toString());
+          bundle.putString("quantity", String.valueOf(currentQuantity));
+          OrderNowDialogFragment orderNowDialogFragment = new OrderNowDialogFragment();
+          orderNowDialogFragment.setArguments(bundle);
+          orderNowDialogFragment.show(getSupportFragmentManager(), "orderNow");
         });
   }
 
